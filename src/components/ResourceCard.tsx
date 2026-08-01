@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Brain, Wind, Moon, BookOpen, Sparkles, ChevronRight } from 'lucide-react';
-import { ResourceCardData } from '../types';
+import {
+  ExternalLink,
+  Brain,
+  Wind,
+  Moon,
+  BookOpen,
+  Sparkles,
+  ChevronRight,
+  Headphones,
+} from 'lucide-react';
+import { ResourceCardData, UserData } from '../types';
 
 interface ResourceCardProps {
   card: ResourceCardData;
   index: number;
   onOpenPreview?: (cardId: string) => void;
+  userData?: UserData | null;
+  onRequireRegistration?: () => void;
 }
 
 export const ResourceCard: React.FC<ResourceCardProps> = ({
   card,
   index,
   onOpenPreview,
+  userData,
+  onRequireRegistration,
 }) => {
   const [ripple, setRipple] = useState<{ x: number; y: number; show: boolean }>({
     x: 0,
@@ -24,8 +37,27 @@ export const ResourceCard: React.FC<ResourceCardProps> = ({
     switch (iconName) {
       case 'Brain':
         return <Brain className="w-6 h-6 text-[#D4AF37]" />;
+      case 'Headphones':
       case 'Wind':
-        return <Wind className="w-6 h-6 text-emerald-300" />;
+        return (
+          <div className="relative flex items-center justify-center">
+            <Headphones className="w-6 h-6 text-emerald-300 drop-shadow-[0_0_8px_rgba(110,231,183,0.5)]" />
+            <div className="absolute -bottom-1 flex items-end justify-center gap-0.5 h-2">
+              <span
+                className="w-0.5 h-1.5 bg-[#D4AF37] rounded-full animate-bounce"
+                style={{ animationDuration: '1.2s', animationDelay: '0ms' }}
+              />
+              <span
+                className="w-0.5 h-2.5 bg-emerald-300 rounded-full animate-bounce"
+                style={{ animationDuration: '1.2s', animationDelay: '250ms' }}
+              />
+              <span
+                className="w-0.5 h-1.5 bg-[#D4AF37] rounded-full animate-bounce"
+                style={{ animationDuration: '1.2s', animationDelay: '500ms' }}
+              />
+            </div>
+          </div>
+        );
       case 'Moon':
         return <Moon className="w-6 h-6 text-indigo-300" />;
       case 'BookOpen':
@@ -36,6 +68,11 @@ export const ResourceCard: React.FC<ResourceCardProps> = ({
   };
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!userData && onRequireRegistration) {
+      onRequireRegistration();
+      return;
+    }
+
     // Create ripple effect position
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;

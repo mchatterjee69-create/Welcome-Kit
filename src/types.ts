@@ -7,7 +7,7 @@ export interface UserData {
 
 export interface ResourceCardData {
   id: string;
-  iconName: 'Brain' | 'Wind' | 'Moon' | 'BookOpen';
+  iconName: 'Brain' | 'Wind' | 'Moon' | 'BookOpen' | 'Headphones';
   title: string;
   description: string;
   buttonText: string;

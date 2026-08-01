@@ -87,13 +87,13 @@ export default function App() {
     },
     {
       id: 'card-2',
-      iconName: 'Wind',
+      iconName: 'Headphones',
       title: '🌬 5-Minute Stress Reset Audio',
       description:
         'A quick guided breathing practice to instantly calm your mind, reduce stress, and reset your nervous system in just five minutes.',
       buttonText: '🎧 Listen Now',
       buttonActionUrl:
-        'https://drive.google.com/file/d/1g4rYoiOV6vo8_FgV_G3ThYgWIxwU48Z2/view?usp=drivesdk',
+        'https://drive.google.com/file/d/1_XsxGpVBnKgLnP8Cr5jhsG8mpZQzxHWA/view?usp=drivesdk',
       badge: 'Audio Practice',
       hasPreview: true,
     },
@@ -122,6 +122,10 @@ export default function App() {
   ];
 
   const handleOpenPreview = (cardId: string) => {
+    if (!userData) {
+      setActiveModal('registration');
+      return;
+    }
     if (cardId === 'card-2') {
       setActiveModal('audio');
     } else {
@@ -189,6 +193,8 @@ export default function App() {
               card={card}
               index={idx}
               onOpenPreview={handleOpenPreview}
+              userData={userData}
+              onRequireRegistration={() => setActiveModal('registration')}
             />
           ))}
         </section>

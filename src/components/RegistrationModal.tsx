@@ -86,13 +86,16 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="relative w-full max-w-md bg-[#07231F] border-2 border-[#D4AF37] rounded-3xl p-6 sm:p-8 shadow-[0_25px_70px_rgba(212,175,55,0.3)] text-white overflow-hidden"
         >
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-[#0F4C45]/50 border border-[#1C6B63] text-slate-300 hover:text-white"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          {/* Close button - only shown if user is already registered and modifying profile */}
+          {userData && (
+            <button
+              onClick={onClose}
+              type="button"
+              className="absolute top-4 right-4 p-2 rounded-full bg-[#0F4C45]/50 border border-[#1C6B63] text-slate-300 hover:text-white cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
 
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/50 text-[#FFF2BE] text-xs font-semibold mb-3">
