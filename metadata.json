@@ -1,0 +1,6 @@
+{
+  "name": "FREE Welcome Kit",
+  "description": "Premium digital welcome kit and mental wellness hub for Path to Inner Peace.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
