@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { CheckCircle2, Calendar, Clock, Youtube, Sparkles, BellRing, Share2, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Calendar, Clock, Youtube, BellRing, Share2, ArrowRight } from 'lucide-react';
 
 interface ChallengeSectionProps {
   onJoinChallenge: () => void;
@@ -42,14 +42,13 @@ export const ChallengeSection: React.FC<ChallengeSectionProps> = ({ onJoinChalle
 
         {/* Top Challenge Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-[#FFF2BE] text-xs font-semibold mb-6 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-          <Sparkles className="w-4 h-4 text-[#D4AF37] animate-spin-slow" />
           <span>FREE 5-Day • 30-Minute Mental Reset</span>
         </div>
 
         {/* Challenge Title */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-2 leading-tight">
-          🚀 Join the FREE 5-Day<br />
-          <span className="gold-text-gradient">30-Minute Mental Reset Challenge</span>
+          Join FREE 5-Day<br />
+          <span className="gold-text-gradient">30-Minute Mental Reset</span>
         </h2>
 
         {/* Tagline / Subtitle */}
@@ -112,7 +111,10 @@ export const ChallengeSection: React.FC<ChallengeSectionProps> = ({ onJoinChalle
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            onClick={onJoinChallenge}
+            onClick={() => {
+              window.open('https://youtube.com/live/u42RK5eV_c8?feature=share', '_blank', 'noopener,noreferrer');
+              if (onJoinChallenge) onJoinChallenge();
+            }}
             className="btn-gold animate-pulse-gold w-full py-4 px-6 rounded-2xl font-extrabold text-base sm:text-lg flex items-center justify-center gap-3 text-[#07231F] cursor-pointer shadow-[0_10px_35px_rgba(212,175,55,0.4)] border border-[#FFF2BE]/60"
           >
             <span>🚀 Join the Challenge Now</span>
@@ -121,7 +123,7 @@ export const ChallengeSection: React.FC<ChallengeSectionProps> = ({ onJoinChalle
 
           <p className="text-center text-xs text-slate-400 font-light flex items-center justify-center gap-1.5 pt-1">
             <BellRing className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>100% Free • Daily Morning Access • No Card Required</span>
+            <span>100% Free • Daily Morning Access</span>
           </p>
         </div>
       </div>

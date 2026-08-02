@@ -82,7 +82,10 @@ export const ResourceCard: React.FC<ResourceCardProps> = ({
     setTimeout(() => setRipple((prev) => ({ ...prev, show: false })), 600);
 
     // Open target link in new tab safely
-    window.open(card.buttonActionUrl, '_blank', 'noopener,noreferrer');
+    const targetUrl = card.buttonActionUrl.startsWith('http://') || card.buttonActionUrl.startsWith('https://')
+      ? card.buttonActionUrl
+      : `https://${card.buttonActionUrl}`;
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

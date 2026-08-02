@@ -55,7 +55,10 @@ export const TeaserModal: React.FC<TeaserModalProps> = ({ card, onClose }) => {
   const highlights = getTeaserHighlights(card.id);
 
   const handleOpenFull = () => {
-    window.open(card.buttonActionUrl, '_blank', 'noopener,noreferrer');
+    const targetUrl = card.buttonActionUrl.startsWith('http://') || card.buttonActionUrl.startsWith('https://')
+      ? card.buttonActionUrl
+      : `https://${card.buttonActionUrl}`;
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
     onClose();
   };
 
